@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: me.jics
+testFramework: spock
+sourceLanguage: java
+buildTool: maven
+features: [annotation-api, app-name, gcp-pubsub, graalvm, http-client, java, java-application, logback, lombok, maven, netty-server, reactor, reactor-http-client, readme, shade, spock, testcontainers, yaml]
