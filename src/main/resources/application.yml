@@ -1,7 +1,3 @@
 micronaut:
   application:
     name: jacksonStringError
-
-jackson:
-  serialization:
-    writeDatesAsTimestamps: false

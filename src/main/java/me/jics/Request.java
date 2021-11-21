@@ -1,6 +1,7 @@
 package me.jics;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.micronaut.core.annotation.Introspected;
@@ -26,7 +27,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @TypeHint(
-        typeNames = {"me.jics.Request$RequestBuilder"},
+        typeNames = {"me.jics.Request$RequestBuilder", "me.jics.CustomDateSerializer", "me.jics.DateJsonFormat"},
         accessType = {TypeHint.AccessType.ALL_DECLARED_CONSTRUCTORS, TypeHint.AccessType.ALL_DECLARED_FIELDS, TypeHint.AccessType.ALL_DECLARED_METHODS}
 )
 @Introspected
@@ -34,10 +35,12 @@ public final class Request {
     @NotNull
     @NotBlank
     @NotEmpty
+    @JsonProperty("name")
     private final String name;
     @NotNull
     @NotBlank
     @NotEmpty
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateJsonFormat("yyyy-MM-dd HH:mm:ss") @JsonSerialize(using = CustomDateSerializer.class)
     private final LocalDateTime date;
 }
